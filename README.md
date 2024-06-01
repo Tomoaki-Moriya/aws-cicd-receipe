@@ -1,14 +1,13 @@
-# Welcome to your CDK TypeScript project
+# AWS CDK CI/CD Recipe Collection
 
-This is a blank project for CDK development with TypeScript.
+This repository contains a collection of AWS CDK recipes for setting up CI/CD environments.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Getting Started
 
-## Useful commands
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+### Prerequisites
+
+- Node.js
+- AWS CDK
+- AWS CLI
