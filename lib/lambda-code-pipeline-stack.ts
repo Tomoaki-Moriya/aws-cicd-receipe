@@ -9,6 +9,7 @@ import {
 import { Construct } from "constructs";
 import { ARTIFACT_BUCKET_NAME } from "./artifact-bucket-stack";
 import { IBucket } from "aws-cdk-lib/aws-s3";
+import { GITHUB_OAUTH_TOKEN_KEY, SECRET_NAME } from "./secrets-manager-stack";
 
 const STACK_NAME = "HtmlToPdfLambdaStack";
 
@@ -28,7 +29,6 @@ export class LambdaCodePipelineStack extends cdk.Stack {
 
     const sourceOutput = new aws_codepipeline.Artifact();
     const buildOutput = new aws_codepipeline.Artifact();
-    const secret = this.node.tryGetContext("SECRET_ID") as string;
 
     codePipeline.addStage({
       stageName: "Source",
@@ -38,8 +38,8 @@ export class LambdaCodePipelineStack extends cdk.Stack {
           owner: "Tomoaki-Moriya",
           repo: "html-to-pdf-lambda",
           branch: "main",
-          oauthToken: cdk.SecretValue.secretsManager(secret, {
-            jsonField: "GITHUB_OAUTH_TOKEN",
+          oauthToken: cdk.SecretValue.secretsManager(SECRET_NAME, {
+            jsonField: GITHUB_OAUTH_TOKEN_KEY,
           }),
           output: sourceOutput,
           runOrder: 1,
@@ -69,7 +69,7 @@ export class LambdaCodePipelineStack extends cdk.Stack {
             stackName: STACK_NAME,
             changeSetName: `${STACK_NAME}ChangeSet`,
             runOrder: 3,
-            templatePath: buildOutput.atPath("build.yaml"),
+            templatePath: buildOutput.atPath("build.yml"),
             templateConfiguration: buildOutput.atPath("param.json"),
             adminPermissions: true,
           }

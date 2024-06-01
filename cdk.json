@@ -61,6 +61,6 @@
     "@aws-cdk/aws-kms:reduceCrossAccountRegionPolicyScope": true,
     "@aws-cdk/aws-eks:nodegroupNameAttribute": true,
     "@aws-cdk/aws-ec2:ebsDefaultGp3Volume": true,
-    "SECRET_ID": "xxx"
+    "GITHUB_OAUTH_TOKEN": "xxx"
   }
 }
